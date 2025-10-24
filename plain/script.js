@@ -258,8 +258,7 @@ function renderQuestion() {
         input.placeholder = 'उत्तर लिखो';
         
         if (isMobile && state.settings.useCustomNumpad) {
-            input.readOnly = true;
-            // No longer need focus/blur listeners to control numpad
+            input.inputMode = 'none';
         } else {
             input.inputMode = 'decimal';
         }

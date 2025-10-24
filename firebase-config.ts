@@ -1,7 +1,8 @@
 // Import the functions you need from the SDKs you need
-// Fix: Use Firebase v8 namespaced API to resolve import error.
-import firebase from "firebase/app";
-import "firebase/firestore";
+// Fix: The 'initializeApp' property does not exist on the modern Firebase v9+ 'firebase/app' import.
+// Using the v8 compatibility libraries ('firebase/compat/*') allows us to use the legacy v8 namespaced API with a v9+ installation.
+import firebase from "firebase/compat/app";
+import "firebase/compat/firestore";
 
 // TODO: Add your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
