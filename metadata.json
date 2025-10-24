@@ -1,0 +1,5 @@
+{
+  "name": "Mera Abhyas: Hindi Quiz App",
+  "description": "A dynamic quiz application for practicing questions from a JSON input, featuring customizable settings like question shuffling, wrong answer repetition, and a custom numpad for a better mobile experience. Tracks progress with a timer and saves test history.",
+  "requestFramePermissions": []
+}

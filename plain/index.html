@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mera Abhyas: Hindi Quiz App (Plain JS)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Kohinoor+Devanagari:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <div class="app-content">
+            <header>
+                <h1>मेरा अभ्यास</h1>
+                <!-- Settings Section, shown only on setup screen -->
+                <div id="settings-container">
+                    <div class="accordion" data-open="true">
+                        <button class="accordion-btn">
+                            <span>Settings</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 9l-7 7-7-7" /></svg>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <div class="settings-options">
+                                    <label class="setting-item">
+                                        <span>Shuffle Questions</span>
+                                        <input id="setting-shuffle" type="checkbox" />
+                                    </label>
+                                    <label class="setting-item">
+                                        <span>Repeat Wrong Answers</span>
+                                        <input id="setting-repeatWrong" type="checkbox" />
+                                    </label>
+                                    <label class="setting-item">
+                                        <span>Custom Numpad (recommended)</span>
+                                        <input id="setting-useCustomNumpad" type="checkbox" checked />
+                                    </label>
+                                    <label class="setting-item">
+                                        <span>Question Set Repetitions</span>
+                                        <select id="setting-repeatSet">
+                                            <option value="1">1 ×</option>
+                                            <option value="2">2 ×</option>
+                                            <option value="3">3 ×</option>
+                                            <option value="4">4 ×</option>
+                                            <option value="5">5 ×</option>
+                                            <option value="6">6 ×</option>
+                                            <option value="7">7 ×</option>
+                                            <option value="8">8 ×</option>
+                                            <option value="9">9 ×</option>
+                                            <option value="10">10 ×</option>
+                                        </select>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main>
+                <!-- Quiz Setup Screen -->
+                <section id="quiz-setup" class="view">
+                    <div class="card card-setup">
+                        <div class="card-header">
+                            <h2>प्रश्न डालो</h2>
+                            <button id="load-quiz-modal-btn" class="btn btn-secondary btn-sm">Load Quiz</button>
+                        </div>
+                        <textarea id="json-textarea" placeholder="JSON साटो" spellcheck="false"></textarea>
+                        <p id="json-error" class="error-message"></p>
+                        <button id="start-quiz-btn" class="btn btn-primary btn-full">अभ्यास आरंभ करे</button>
+                    </div>
+                </section>
+
+                <!-- Quiz Active Screen -->
+                <section id="quiz-active" class="view" hidden>
+                    <div class="timer">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <span id="timer-display">00:00</span>
+                    </div>
+                    <p id="quiz-info" class="quiz-progress-text"></p>
+                    <div id="question-card" class="card card-question">
+                        <h2 id="question-text"></h2>
+                        <div id="answer-inputs" class="answer-container">
+                            <!-- Options or input will be rendered here -->
+                        </div>
+                    </div>
+                    <div class="end-quiz-wrapper">
+                        <button id="end-quiz-btn" class="btn-link">End Quiz</button>
+                    </div>
+                </section>
+
+                <!-- Quiz Result Screen -->
+                <section id="quiz-result" class="view" hidden>
+                    <div class="card card-result">
+                        <h2 class="card-title">Quiz Summary</h2>
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <p>Score</p>
+                                <strong id="result-score" class="text-blue"></strong>
+                            </div>
+                            <div class="stat-card">
+                                <p>Time Taken</p>
+                                <strong id="result-time" class="text-green"></strong>
+                            </div>
+                        </div>
+                        <div class="stats-details">
+                            <div class="stat-row"><p>Correct Answers:</p><strong id="result-correct"></strong></div>
+                            <div class="stat-row"><p>Wrong Answers:</p><strong id="result-wrong"></strong></div>
+                            <div class="stat-row"><p>Questions Skipped:</p><strong id="result-skipped"></strong></div>
+                        </div>
+                        <div>
+                            <h3 class="summary-title">Questions Summary:</h3>
+                            <div id="result-answers-summary" class="answers-summary-list">
+                                <!-- Answer summaries will be rendered here -->
+                            </div>
+                        </div>
+                        <button id="start-new-quiz-btn" class="btn btn-primary btn-full">Start New Quiz</button>
+                    </div>
+                </section>
+            </main>
+
+            <footer>
+                <!-- Test History Section -->
+                <div id="test-history-container" class="accordion">
+                     <button class="accordion-btn">
+                        <span>Test History</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 9l-7 7-7-7" /></svg>
+                    </button>
+                    <div class="accordion-content">
+                        <div id="history-table-container" class="accordion-body">
+                           <!-- History table or 'no history' message will be rendered here -->
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-actions">
+                     <button id="clear-cache-btn" class="btn-link">Clear Cache</button>
+                </div>
+                 <div class="footer-actions">
+                    <button onclick="window.location.href='dashboard.html'" class="btn-link text-blue">
+                        Manage Quizzes (Dashboard)
+                    </button>
+                </div>
+            </footer>
+        </div>
+    </div>
+    
+    <!-- Modal for Loading Quizzes -->
+    <div id="load-quiz-modal" class="modal-overlay" hidden>
+        <div class="modal-content">
+            <header class="modal-header">
+                <h2>Load a Quiz</h2>
+                <button id="close-modal-btn" class="modal-close-btn" aria-label="Close modal">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                </button>
+            </header>
+            <main class="modal-body">
+                <div class="quiz-selector-container">
+                    <div class="search-bar-container">
+                        <input type="text" id="quiz-search-input" placeholder="Search quizzes by title or category..." class="search-input">
+                    </div>
+                    <div id="quiz-selector-list" class="quiz-selector-list">
+                        <!-- Quiz cards will be rendered here -->
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Custom Numpad (dynamically added to body) -->
+    
+    <script src="script.js"></script>
+</body>
+</html>
