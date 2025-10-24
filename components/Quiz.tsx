@@ -1,8 +1,8 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Question, Settings, TestResult, AnswerRecord } from '../types';
-import { useTimer } from '../hooks/useTimer';
-import CustomNumpad from './CustomNumpad';
+import { Question, Settings, TestResult, AnswerRecord } from '../types.ts';
+import { useTimer } from '../hooks/useTimer.ts';
+import CustomNumpad from './CustomNumpad.tsx';
 
 interface QuizProps {
   questions: Question[];

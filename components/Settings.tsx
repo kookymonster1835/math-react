@@ -1,7 +1,7 @@
 
 import React from 'react';
-import { Settings } from '../types';
-import Accordion from './Accordion';
+import { Settings } from '../types.ts';
+import Accordion from './Accordion.tsx';
 
 interface SettingsProps {
   settings: Settings;

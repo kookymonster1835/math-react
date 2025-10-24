@@ -1,7 +1,7 @@
-
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+// Fix: Use Firebase v8 namespaced API to resolve import error.
+import firebase from "firebase/app";
+import "firebase/firestore";
 
 // TODO: Add your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -15,7 +15,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+const app = firebase.initializeApp(firebaseConfig);
+const db = app.firestore();
 
 export { db };

@@ -1,10 +1,10 @@
 
 import React, { useState } from 'react';
-import { Question, QuizDocument } from '../types';
-import { useLocalStorage } from '../hooks/useLocalStorage';
-import { DEFAULT_QUESTIONS } from '../constants';
-import Modal from './Modal';
-import QuizSelector from './QuizSelector';
+import { Question, QuizDocument } from '../types.ts';
+import { useLocalStorage } from '../hooks/useLocalStorage.ts';
+import { DEFAULT_QUESTIONS } from '../constants.ts';
+import Modal from './Modal.tsx';
+import QuizSelector from './QuizSelector.tsx';
 
 interface QuizSetupProps {
   onStartQuiz: (questions: Question[]) => void;

@@ -1,12 +1,12 @@
 
 import React, { useState, useCallback } from 'react';
-import { Settings, Question, TestResult } from './types';
-import { useLocalStorage } from './hooks/useLocalStorage';
-import SettingsComponent from './components/Settings';
-import QuizSetup from './components/QuizSetup';
-import Quiz from './components/Quiz';
-import QuizResult from './components/QuizResult';
-import TestHistory from './components/TestHistory';
+import { Settings, Question, TestResult } from './types.ts';
+import { useLocalStorage } from './hooks/useLocalStorage.ts';
+import SettingsComponent from './components/Settings.tsx';
+import QuizSetup from './components/QuizSetup.tsx';
+import Quiz from './components/Quiz.tsx';
+import QuizResult from './components/QuizResult.tsx';
+import TestHistory from './components/TestHistory.tsx';
 
 type QuizState = 'setup' | 'active' | 'result';
 

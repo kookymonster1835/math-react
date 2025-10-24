@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { TestResult, AnswerRecord } from '../types';
+import { TestResult, AnswerRecord } from '../types.ts';
 
 interface QuizResultProps {
   result: TestResult;

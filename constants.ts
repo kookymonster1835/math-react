@@ -1,5 +1,5 @@
 
-import { Question } from './types';
+import { Question } from './types.ts';
 
 export const DEFAULT_QUESTIONS: Question[] = [
     {"question":"1 × 1","questionType":"number","correctAnswer":1},{"question":"1 × 2","questionType":"number","correctAnswer":2},{"question":"1 × 3","questionType":"number","correctAnswer":3},{"question":"1 × 4","questionType":"number","correctAnswer":4},{"question":"1 × 5","questionType":"number","correctAnswer":5},{"question":"1 × 6","questionType":"number","correctAnswer":6},{"question":"1 × 7","questionType":"number","correctAnswer":7},{"question":"1 × 8","questionType":"number","correctAnswer":8},{"question":"1 × 9","questionType":"number","correctAnswer":9},{"question":"1 × 10","questionType":"number","correctAnswer":10},

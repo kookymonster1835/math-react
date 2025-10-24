@@ -1,7 +1,7 @@
 
 import React from 'react';
-import { TestResult } from '../types';
-import Accordion from './Accordion';
+import { TestResult } from '../types.ts';
+import Accordion from './Accordion.tsx';
 
 interface TestHistoryProps {
   history: TestResult[];

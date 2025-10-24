@@ -1,9 +1,8 @@
 
 import React, { useState, useMemo } from 'react';
-// import { collection, getDocs, QueryDocumentSnapshot, DocumentData } from 'firebase/firestore';
 // import { db } from '../firebase-config';
 // import { useLocalStorage } from '../hooks/useLocalStorage';
-import { QuizDocument } from '../types';
+import { QuizDocument } from '../types.ts';
 
 interface QuizSelectorProps {
   onSelectQuiz: (quiz: QuizDocument) => void;
